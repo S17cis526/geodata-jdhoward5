@@ -39,7 +39,8 @@ function serveFile(file, type, req, res) {
  * @param {http.serverResponse} res - the response object
  */
 function handleRequest(req, res) {
-  switch(req.url) {
+  var url = require('url').parse(req.url);
+  switch(url.pathname) {
     // Serving static files
     case '/':
     case '/index.html':
@@ -61,6 +62,9 @@ function handleRequest(req, res) {
       break;
     case '/united-states.json':
       serveFile('data/united-states.json', 'application/json', req, res);
+      break;
+    case '/add-location':
+      //TODO: define
       break;
 
     // Serve error code
